@@ -3,6 +3,7 @@ export { prerender } from '../prerender';
 
 import DefaultLayout from '../layouts/DefaultLayout.astro';
 import PortfolioGrid from '../components/PortfolioGrid.astro';
+import PortfolioShowcase from '../components/PortfolioShowcase.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { CheckCircle2 } from '@lucide/astro';
 
@@ -24,6 +25,8 @@ const process = ['Kurzbriefing', 'Stilrichtung', 'Entwurf', 'Feedbackrunde', 'Fi
       </div>
     </div>
   </section>
+
+  <PortfolioShowcase />
 
   <PortfolioGrid />
 
