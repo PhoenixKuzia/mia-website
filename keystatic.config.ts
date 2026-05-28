@@ -4,8 +4,12 @@ const githubRepo =
   (import.meta.env.PUBLIC_KEYSTATIC_GITHUB_REPO as string | undefined) ??
   'PhoenixKuzia/mia-website';
 
-// Local in dev; GitHub on any production deploy (Vercel has no writable local files).
-const storage = import.meta.env.PROD
+// GitHub: production + optional local setup (`npm run keystatic:setup`).
+// Local dev otherwise (no login, edits files on disk).
+const useGithubStorage =
+  import.meta.env.PROD || import.meta.env.PUBLIC_KEYSTATIC_SETUP === 'true';
+
+const storage = useGithubStorage
   ? { kind: 'github' as const, repo: githubRepo as `${string}/${string}` }
   : { kind: 'local' as const };
 

@@ -13,12 +13,16 @@ Open http://localhost:4321
 
 ### Blog CMS (Keystatic)
 
-Edit blog posts at **http://localhost:4321/keystatic** (alias: `/admin`).
+| Environment | URL | Auth |
+|-------------|-----|------|
+| Local dev | http://localhost:4321/keystatic | None — edits files in `src/content/blog/` |
+| Production | https://mia-website-zeta.vercel.app/keystatic | GitHub (repo write access) |
 
-- **Local:** no login; changes write directly to `src/content/blog/`.
-- **Production (Vercel):** open `/keystatic` — you should see **Log in with GitHub**. Complete the one-time GitHub App setup, then copy the generated env vars into Vercel → Settings → Environment Variables (see `.env.example`) and **redeploy**. Until those vars are set, login may fail after the GitHub redirect.
+**First-time production setup** (fixes login HTTP 500): see [docs/keystatic-production-setup.md](docs/keystatic-production-setup.md).
 
-Create, edit, or delete posts in the **Blog** collection. Set **Entwurf** to off to publish. Each save commits to GitHub and triggers a new Vercel deploy.
+Short version: run `npm run keystatic:setup` locally → create GitHub App with deployed URL `https://mia-website-zeta.vercel.app` → copy `.env` values into Vercel → redeploy.
+
+Set **Entwurf** to off to publish. Saves on production commit to GitHub and trigger a Vercel rebuild.
 
 ## Build
 
