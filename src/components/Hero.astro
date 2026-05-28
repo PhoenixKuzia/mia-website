@@ -1,0 +1,48 @@
+---
+import { ArrowRight, Flower2, Palette, Sparkles } from '@lucide/astro';
+import miaMaskeOnBlack from '../assets/images/mia_maske_all_onblack.svg';
+---
+
+<section class="overflow-hidden">
+  <div class="container grid min-h-[calc(100svh-5rem)] items-center gap-10 py-12 md:grid-cols-[1.02fr_0.98fr] md:py-16">
+    <div>
+      <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-white/76 px-4 py-2 text-sm font-bold text-brand-primary shadow-sm">
+        <Flower2 size={18} aria-hidden="true" /> Digitale Produkte mit Blütenenergie
+      </p>
+      <h1 class="font-display text-5xl font-extrabold leading-[0.98] text-brand-dark sm:text-6xl lg:text-7xl">
+        MIA gestaltet Logos, Icons und Illustrationen.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
+        Verspielte, organische Designprodukte für Ihre Marke – von der Selbstständigkeit bis zum kreativen Unternehmen. Klar nutzbar, farbstark und bereit für Web, Social Media und Print.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="/portfolio/" class="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-brand-primary px-6 py-4 font-bold text-white shadow-bloom transition hover:bg-brand-accent">
+          Portfolio ansehen <ArrowRight size={20} aria-hidden="true" />
+        </a>
+        <a href="/contact/" class="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-brand-primary/30 bg-white/82 px-6 py-4 font-bold text-brand-dark transition hover:border-brand-primary hover:bg-white">
+          Projekt anfragen
+        </a>
+      </div>
+    </div>
+
+    <div class="relative min-h-[430px]">
+      <div class="absolute inset-x-4 top-8 h-72 rounded-organic bg-brand-accent/30 blur-3xl"></div>
+      <div class="relative mx-auto w-full max-w-[580px]">
+        <div class="relative aspect-square w-full">
+          <div class="pointer-events-none absolute inset-0 rounded-full border border-white/20 bg-black shadow-bloom" aria-hidden="true"></div>
+          <img
+            src={miaMaskeOnBlack.src}
+            alt="MIA Maskenlogo mit floralen Markenelementen"
+            class="relative z-[1] h-full w-full object-contain object-center"
+          />
+          <div class="absolute -left-1 top-8 z-10 rounded-full border border-brand-primary/20 bg-brand-sun p-4 text-brand-dark shadow-lg sm:left-2 sm:top-10">
+            <Sparkles size={30} aria-hidden="true" />
+          </div>
+          <div class="absolute -right-1 bottom-8 z-10 rounded-full border border-brand-primary/20 bg-white p-4 text-brand-leaf shadow-lg sm:right-2 sm:bottom-10">
+            <Palette size={32} aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

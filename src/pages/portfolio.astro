@@ -1,0 +1,47 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { CheckCircle2 } from '@lucide/astro';
+
+const categories = ['Logos', 'Icons', 'Illustrationen'];
+const process = ['Kurzbriefing', 'Stilrichtung', 'Entwurf', 'Feedbackrunde', 'Finale Dateien'];
+---
+
+<DefaultLayout title="Portfolio | MIA" description="Portfolio, Leistungen und Preise für MIA Logos, Icons und Illustrationen.">
+  <section class="section">
+    <div class="container">
+      <p class="mb-3 text-sm font-extrabold uppercase tracking-widest text-brand-primary">Portfolio</p>
+      <h1 class="max-w-4xl font-display text-5xl font-extrabold leading-tight text-brand-dark md:text-6xl">
+        Digitale Gestaltung für Marken mit Persönlichkeit.
+      </h1>
+      <div class="mt-8 flex flex-wrap gap-3">
+        {categories.map((category) => (
+          <span class="rounded-full border border-brand-primary/20 bg-white/82 px-5 py-3 text-sm font-bold text-brand-dark">{category}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PortfolioGrid />
+
+  <section class="section bg-white/60">
+    <div class="container grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-center">
+      <div>
+        <p class="mb-3 text-sm font-extrabold uppercase tracking-widest text-brand-primary">Ablauf</p>
+        <h2 class="font-display text-4xl font-bold leading-tight">Vom Wunschmotiv zur fertigen Datei.</h2>
+      </div>
+      <div class="grid gap-3">
+        {process.map((step, index) => (
+          <div class="flex items-center gap-4 rounded-2xl bg-white/88 p-4 shadow-sm">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-primary text-sm font-extrabold text-white">{index + 1}</span>
+            <span class="font-bold">{step}</span>
+            <CheckCircle2 class="ml-auto text-brand-leaf" size={22} aria-hidden="true" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactForm />
+</DefaultLayout>

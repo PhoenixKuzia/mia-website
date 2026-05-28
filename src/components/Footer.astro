@@ -1,0 +1,52 @@
+---
+import { Mail, MessageCircle, Send } from '@lucide/astro';
+
+const legalLinks = [
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/impressum/', label: 'Impressum' },
+  { href: '/datenschutz/', label: 'Datenschutz' },
+];
+---
+
+<footer class="bg-brand-dark text-white">
+  <div class="container grid gap-10 py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+    <div>
+      <div class="mb-4 flex items-center gap-3">
+        <span class="grid h-12 w-12 place-items-center rounded-full bg-white">
+          <img src="/assets/mia-logo.png" alt="" class="h-9 w-9 object-contain" />
+        </span>
+        <span class="font-display text-2xl font-bold">MIA</span>
+      </div>
+      <p class="max-w-sm text-sm leading-7 text-white/72">
+        Digitale Logos, Icons und Illustrationen für Marken, die freundlich, farbstark und wiedererkennbar auftreten wollen.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-brand-accent">Kontakt</h2>
+      <div class="grid gap-3 text-sm text-white/78">
+        <a class="focus-ring flex items-center gap-3 rounded-xl py-1 hover:text-white" href="https://wa.me/PHONE_NUMBER">
+          <MessageCircle size={18} aria-hidden="true" /> WhatsApp
+        </a>
+        <a class="focus-ring flex items-center gap-3 rounded-xl py-1 hover:text-white" href="mailto:hallo@mia-design.de">
+          <Mail size={18} aria-hidden="true" /> hallo@mia-design.de
+        </a>
+        <a class="focus-ring flex items-center gap-3 rounded-xl py-1 hover:text-white" href="/contact/">
+          <Send size={18} aria-hidden="true" /> Kontaktformular
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="mb-4 text-sm font-bold uppercase tracking-widest text-brand-accent">Service</h2>
+      <div class="grid gap-3 text-sm text-white/78">
+        {legalLinks.map((link) => (
+          <a class="focus-ring rounded-xl py-1 hover:text-white" href={link.href}>{link.label}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-xs text-white/54">
+    © {new Date().getFullYear()} MIA. Alle Rechte vorbehalten.
+  </div>
+</footer>

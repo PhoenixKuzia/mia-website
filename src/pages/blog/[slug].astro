@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<DefaultLayout title={`${post.data.title} | MIA Blog`} description={post.data.description}>
+  <article class="section">
+    <div class="container max-w-3xl">
+      <a href="/blog/" class="focus-ring mb-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-bold shadow-sm hover:shadow-bloom">Zurück zum Blog</a>
+      <time class="text-sm font-bold text-brand-primary" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('de-DE')}</time>
+      <h1 class="mt-4 font-display text-5xl font-extrabold leading-tight text-brand-dark">{post.data.title}</h1>
+      <p class="mt-5 text-lg leading-8 text-slate-700">{post.data.description}</p>
+      <div class="mt-10 max-w-none rounded-[2rem] bg-white/88 p-6 leading-8 text-slate-700 shadow-sm [&_p]:mb-5 [&_p:last-child]:mb-0 [&_strong]:text-brand-dark">
+        <Content />
+      </div>
+    </div>
+  </article>
+</DefaultLayout>

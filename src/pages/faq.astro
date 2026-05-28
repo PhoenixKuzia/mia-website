@@ -1,0 +1,27 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro';
+
+const faqs = [
+  ['Wie läuft eine Anfrage ab?', 'Sie senden kurz Ziel, Stilwunsch und Einsatzbereich. Danach erhalten Sie ein konkretes Angebot mit Umfang, Preis und Timing.'],
+  ['Gibt es feste Paketpreise?', 'Ja, die Preise auf der Portfolioseite sind Startpreise. Der finale Preis hängt vom Umfang und den benötigten Dateiformaten ab.'],
+  ['Wie wird bezahlt?', 'Die Abrechnung erfolgt per Rechnung nach Ihrem Wunsch. Eine Shop-Funktion ist für den Launch nicht vorgesehen.'],
+  ['Lassen sich Blogbeiträge später selbst veröffentlichen?', 'Ja, Decap CMS ist unter /admin vorbereitet. Dafür muss Git Gateway beim Hosting eingerichtet werden.'],
+];
+---
+
+<DefaultLayout title="FAQ | MIA" description="Häufige Fragen zu MIA Logos, Icons, Illustrationen, Anfrage und CMS.">
+  <section class="section">
+    <div class="container max-w-4xl">
+      <p class="mb-3 text-sm font-extrabold uppercase tracking-widest text-brand-primary">FAQ</p>
+      <h1 class="font-display text-5xl font-extrabold leading-tight">Häufige Fragen.</h1>
+      <div class="mt-10 grid gap-4">
+        {faqs.map(([question, answer]) => (
+          <details class="rounded-2xl bg-white/88 p-5 shadow-sm">
+            <summary class="cursor-pointer text-lg font-extrabold">{question}</summary>
+            <p class="mt-3 leading-7 text-slate-700">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import DefaultLayout from '../layouts/DefaultLayout.astro';
+import Hero from '../components/Hero.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+import { HeartHandshake, Layers3, PenTool, ShieldCheck } from '@lucide/astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 2);
+---
+
+<DefaultLayout title="MIA | Digitale Logos, Icons und Illustrationen" description="MIA gestaltet digitale Produkte mit verspielter, organischer Bildsprache: Logos, Icon-Sets und Illustrationen.">
+  <Hero />
+
+  <section class="section bg-white/58">
+    <div class="container grid gap-8 md:grid-cols-[0.92fr_1.08fr] md:items-center">
+      <div class="rounded-organic bg-brand-primary/12 p-8 shadow-bloom">
+        <img src="/assets/mia-logo.png" alt="Farbiges MIA Logo" class="mx-auto h-64 w-64 object-contain" />
+      </div>
+      <div>
+        <p class="mb-3 text-sm font-extrabold uppercase tracking-widest text-brand-primary">Kurz vorgestellt</p>
+        <h2 class="font-display text-4xl font-bold leading-tight text-brand-dark md:text-5xl">Design, das freundlich wirkt und im Alltag funktioniert.</h2>
+        <p class="mt-5 text-base leading-8 text-slate-700">
+          MIA entwickelt digitale Gestaltung für Marken, die schnell sichtbar werden möchten – ohne dabei austauschbar zu wirken. Sie erhalten jedes Ergebnis in klaren Dateiformaten und können es direkt für Website, Social Media, Drucksachen oder Präsentationen einsetzen.
+        </p>
+        <div class="mt-7 grid gap-4 sm:grid-cols-3">
+          {[
+            { icon: PenTool, label: 'Individuelle Formen' },
+            { icon: Layers3, label: 'Nutzbare Dateien' },
+            { icon: HeartHandshake, label: 'Direkte Anfrage' },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <div class="rounded-2xl bg-white/86 p-4 text-sm font-bold shadow-sm">
+                <Icon class="mb-3 text-brand-primary" size={24} aria-hidden="true" />
+                {item.label}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PortfolioGrid />
+
+  <section class="section bg-brand-dark text-white">
+    <div class="container grid gap-8 md:grid-cols-4">
+      {[
+        'Klare Paketpreise als Startpunkt',
+        'Dateien für Web, Social und Print',
+        'Blog und CMS für Ihre Beiträge',
+        'Kontakt per WhatsApp, Mail oder Formular',
+      ].map((item) => (
+        <div class="rounded-2xl border border-white/10 bg-white/6 p-5">
+          <ShieldCheck class="mb-4 text-brand-accent" size={26} aria-hidden="true" />
+          <p class="font-bold leading-6">{item}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="mb-3 text-sm font-extrabold uppercase tracking-widest text-brand-primary">Aus dem Blog</p>
+          <h2 class="font-display text-4xl font-bold text-brand-dark">Einblicke in Design und Prozess.</h2>
+        </div>
+        <a href="/blog/" class="focus-ring rounded-full bg-white px-5 py-3 text-sm font-bold shadow-sm hover:shadow-bloom">Alle Beiträge</a>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="focus-ring rounded-[2rem] border border-brand-primary/12 bg-white/86 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-bloom">
+            <time class="text-sm font-bold text-brand-primary" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('de-DE')}</time>
+            <h3 class="mt-3 text-2xl font-extrabold text-brand-dark">{post.data.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-700">{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
