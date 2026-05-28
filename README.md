@@ -16,7 +16,7 @@ Open http://localhost:4321
 Edit blog posts at **http://localhost:4321/keystatic** (alias: `/admin`).
 
 - **Local:** no login; changes write directly to `src/content/blog/`.
-- **Production (Vercel):** open `/keystatic` on the deployed site, sign in with GitHub (repo write access), and complete the one-time GitHub App setup. Copy the generated env vars to Vercel → Project → Settings → Environment Variables (see `.env.example`).
+- **Production (Vercel):** open `/keystatic` — you should see **Log in with GitHub**. Complete the one-time GitHub App setup, then copy the generated env vars into Vercel → Settings → Environment Variables (see `.env.example`) and **redeploy**. Until those vars are set, login may fail after the GitHub redirect.
 
 Create, edit, or delete posts in the **Blog** collection. Set **Entwurf** to off to publish. Each save commits to GitHub and triggers a new Vercel deploy.
 
