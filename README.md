@@ -11,6 +11,15 @@ npm run dev
 
 Open http://localhost:4321
 
+### Blog CMS (Keystatic)
+
+Edit blog posts at **http://localhost:4321/keystatic** (alias: `/admin`).
+
+- **Local:** no login; changes write directly to `src/content/blog/`.
+- **Production (Vercel):** open `/keystatic` on the deployed site, sign in with GitHub (repo write access), and complete the one-time GitHub App setup. Copy the generated env vars to Vercel → Project → Settings → Environment Variables (see `.env.example`).
+
+Create, edit, or delete posts in the **Blog** collection. Set **Entwurf** to off to publish. Each save commits to GitHub and triggers a new Vercel deploy.
+
 ## Build
 
 ```bash
@@ -20,19 +29,13 @@ npm run preview
 
 ## Deploy (Vercel)
 
-This project is deployed from the connected Git repository on Vercel.
-
 - **Framework preset:** Astro
 - **Build command:** `npm run build`
-- **Output directory:** `dist`
+- **Output:** Vercel serverless (public pages are pre-rendered; `/keystatic` runs on the server)
 - **Node.js:** 22.x (see `engines` in `package.json`)
 
-After connecting GitHub, each push to `main` triggers a production deployment. Pull requests get preview deployments.
-
-### CMS admin
-
-`/admin` serves Decap CMS. Editing via the CMS requires Git-backed storage (GitHub + OAuth or Netlify Identity). Static preview deploys work without CMS auth.
+After connecting GitHub, each push to `main` triggers a production deployment.
 
 ## Repository
 
-GitHub: `PhoenixKuzia/mia-website` (create and push if not yet linked).
+GitHub: `PhoenixKuzia/mia-website`

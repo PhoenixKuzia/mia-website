@@ -11,6 +11,7 @@ export default {
           light: '#FEF2F2',
           cream: '#FFF8F3',
           leaf: '#2F855A',
+          petrol: '#145652',
           sun: '#FBBF24',
         },
       },

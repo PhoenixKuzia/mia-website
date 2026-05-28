@@ -1,0 +1,15 @@
+---
+interface Props {
+  class?: string;
+  size?: 'md' | 'lg';
+}
+
+const { class: className = '', size = 'md' } = Astro.props;
+const sizeClass = size === 'lg' ? 'text-3xl sm:text-4xl' : 'text-2xl sm:text-3xl';
+---
+
+<p class:list={['font-display font-bold leading-snug text-brand-dark', sizeClass, className]} aria-label="My Individually Art">
+  <span class="inline-block"><span class="text-brand-primary">M</span>y</span>{' '}
+  <span class="inline-block"><span class="text-brand-secondary">I</span>ndividually</span>{' '}
+  <span class="inline-block"><span class="text-brand-sun">A</span>rt</span>
+</p>

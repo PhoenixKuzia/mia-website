@@ -9,6 +9,7 @@
   --color-brand-light: #FEF2F2;
   --color-brand-cream: #FFF8F3;
   --color-brand-leaf: #2F855A;
+  --color-brand-petrol: #145652;
   --color-brand-sun: #FBBF24;
   --font-sans: Inter, sans-serif;
   --font-display: "Playfair Display", serif;
@@ -65,6 +66,18 @@ svg {
   padding-block: clamp(3.5rem, 8vw, 6.5rem);
 }
 
+.about-intro {
+  background:
+    radial-gradient(circle at top left, rgba(20, 86, 82, 0.34), transparent 34rem),
+    radial-gradient(circle at bottom right, rgba(47, 133, 90, 0.26), transparent 28rem),
+    linear-gradient(
+      180deg,
+      rgba(204, 232, 228, 0.96) 0%,
+      rgba(214, 239, 233, 0.88) 52%,
+      rgba(228, 244, 240, 0.82) 100%
+    );
+}
+
 .focus-ring {
   outline: 2px solid transparent;
   outline-offset: 4px;
@@ -72,4 +85,48 @@ svg {
 
 .focus-ring:focus-visible {
   outline-color: #ec4899;
+}
+
+@keyframes about-flower-sway {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-28px) rotate(10deg);
+  }
+}
+
+@keyframes about-flower-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.75;
+  }
+  92% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(12px, 105vh, 0) rotate(300deg);
+    opacity: 0;
+  }
+}
+
+.about-flower-side {
+  animation: about-flower-sway ease-in-out infinite;
+}
+
+.about-flower-rain {
+  top: -10vh;
+  animation: about-flower-fall linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-flower-side,
+  .about-flower-rain {
+    animation: none;
+    opacity: 0.35;
+  }
 }

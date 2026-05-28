@@ -1,11 +1,45 @@
 ---
+export { prerender } from '../prerender';
+
 import DefaultLayout from '../layouts/DefaultLayout.astro';
-import { Brush, Flower2, Sparkles } from '@lucide/astro';
+import AboutFlowerDecor from '../components/AboutFlowerDecor.astro';
+import MiaAcronym from '../components/MiaAcronym.astro';
+import { Brush, Flower2, Heart, MapPin, Palette, Sparkles } from '@lucide/astro';
+
+const personalFacts = [
+  { icon: MapPin, label: 'In Leipzig geboren' },
+  { icon: Sparkles, label: '30 Jahre jung' },
+  { icon: Palette, label: 'Frida-Kahlo-Fan' },
+  { icon: Flower2, label: 'Blumen & Farben' },
+  { icon: Heart, label: 'Lebensfroh' },
+];
+
+const strengths = [
+  {
+    icon: Flower2,
+    title: 'Organische Bildsprache',
+    text: 'Ich liebe florale Formen, weiche Linien und lebendige Farben – genau das fließt in meine Arbeit ein.',
+  },
+  {
+    icon: Brush,
+    title: 'Digitale Umsetzung',
+    text: 'Ich liefere Dateien und Varianten, die Sie direkt für Web, Social Media oder Print nutzen können.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Persönlicher Stil',
+    text: 'Kein Baukastenlook: Jedes Projekt bekommt einen eigenen Charakter, der zu Ihnen passt.',
+  },
+];
 ---
 
-<DefaultLayout title="Über MIA" description="Über MIA: digitale Illustrationen, Logos und Icons mit organischem Stil.">
-  <section class="section">
-    <div class="container grid gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-center">
+<DefaultLayout
+  title="Über MIA"
+  description="Über MIA – My Individually Art: persönliche digitale Illustrationen, Logos und Icons aus Leipzig."
+>
+  <section class="about-intro section relative overflow-hidden">
+    <AboutFlowerDecor />
+    <div class="container relative z-10 grid gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-center">
       <div class="relative">
         <div class="rounded-organic bg-white/84 p-8 shadow-bloom">
           <img src="/assets/mia-logo.png" alt="MIA Logo" class="mx-auto h-72 w-72 object-contain" />
@@ -13,30 +47,57 @@ import { Brush, Flower2, Sparkles } from '@lucide/astro';
       </div>
       <div>
         <p class="mb-3 text-sm font-extrabold uppercase tracking-widest text-brand-primary">Über MIA</p>
-        <h1 class="font-display text-5xl font-extrabold leading-tight text-brand-dark md:text-6xl">Gestaltung mit Gefühl für Form, Farbe und Alltag.</h1>
+        <h1 class="font-display text-5xl font-extrabold leading-tight text-brand-dark md:text-6xl">
+          Hallo – ich bin MIA.
+        </h1>
+        <MiaAcronym class="mt-4" size="lg" />
         <p class="mt-6 text-base leading-8 text-slate-700">
-          MIA verbindet digitale Illustration mit praktischer Markenarbeit. Der Fokus liegt auf Designs, die unverwechselbar wirken und zugleich leicht nutzbar bleiben: als Profilbild, Website-Grafik, Icon-System oder Logo-Datei.
+          Hinter den drei Buchstaben steckt <strong class="text-brand-dark">My Individually Art</strong> – mein Raum für
+          Gestaltung mit Herz. Ich bin in Leipzig geboren, 30 Jahre alt und arbeite farbenfroh, blumig und voller
+          Lebensfreude. Frida Kahlo inspiriert mich, Blumen begleiten mich, und genau diese Energie steckt in jedem Logo,
+          jeder Illustration und jedem Icon, das ich für Sie entwickle.
         </p>
+        <ul class="mt-8 flex flex-wrap gap-2" aria-label="Kurz über mich">
+          {
+            personalFacts.map((fact) => {
+              const Icon = fact.icon;
+              return (
+                <li class="inline-flex items-center gap-2 rounded-full border border-brand-primary/18 bg-white/80 px-4 py-2 text-sm font-semibold text-brand-dark shadow-sm">
+                  <Icon size={16} class="text-brand-primary" aria-hidden="true" />
+                  {fact.label}
+                </li>
+              );
+            })
+          }
+        </ul>
       </div>
     </div>
   </section>
 
   <section class="section bg-white/60">
-    <div class="container grid gap-5 md:grid-cols-3">
-      {[
-        { icon: Flower2, title: 'Organische Bildsprache', text: 'Florale Formen, weiche Linien und lebendige Farben.' },
-        { icon: Brush, title: 'Digitale Umsetzung', text: 'Dateien und Varianten, die direkt weiterverwendet werden können.' },
-        { icon: Sparkles, title: 'Persönlicher Stil', text: 'Kein Baukastenlook, sondern Gestaltung passend zum Projekt.' },
-      ].map((item) => {
-        const Icon = item.icon;
-        return (
-          <article class="rounded-[2rem] bg-white/88 p-6 shadow-sm">
-            <Icon class="mb-5 text-brand-primary" size={32} aria-hidden="true" />
-            <h2 class="text-xl font-extrabold">{item.title}</h2>
-            <p class="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
-          </article>
-        );
-      })}
+    <div class="container">
+      <p class="mb-3 text-center text-sm font-extrabold uppercase tracking-widest text-brand-primary">Was mich antreibt</p>
+      <h2 class="mx-auto max-w-3xl text-center font-display text-3xl font-extrabold leading-tight text-brand-dark md:text-4xl">
+        Ich gestalte digitale Illustrationen, Logos und Icons – unverwechselbar und trotzdem alltagstauglich.
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-center text-base leading-8 text-slate-700">
+        Ob Profilbild, Website-Grafik, Icon-System oder Logo-Datei: Ich verbinde organischen Stil mit praktischer
+        Markenarbeit, damit Ihre Marke freundlich, farbstark und wiedererkennbar wirkt.
+      </p>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {
+          strengths.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article class="rounded-[2rem] bg-white/88 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-bloom">
+                <Icon class="mb-5 text-brand-primary" size={32} aria-hidden="true" />
+                <h3 class="text-xl font-extrabold">{item.title}</h3>
+                <p class="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
+              </article>
+            );
+          })
+        }
+      </div>
     </div>
   </section>
 </DefaultLayout>

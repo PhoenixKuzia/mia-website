@@ -1,11 +1,13 @@
 ---
+export { prerender } from '../prerender';
+
 import DefaultLayout from '../layouts/DefaultLayout.astro';
 
 const faqs = [
   ['Wie läuft eine Anfrage ab?', 'Sie senden kurz Ziel, Stilwunsch und Einsatzbereich. Danach erhalten Sie ein konkretes Angebot mit Umfang, Preis und Timing.'],
   ['Gibt es feste Paketpreise?', 'Ja, die Preise auf der Portfolioseite sind Startpreise. Der finale Preis hängt vom Umfang und den benötigten Dateiformaten ab.'],
   ['Wie wird bezahlt?', 'Die Abrechnung erfolgt per Rechnung nach Ihrem Wunsch. Eine Shop-Funktion ist für den Launch nicht vorgesehen.'],
-  ['Lassen sich Blogbeiträge später selbst veröffentlichen?', 'Ja, Decap CMS ist unter /admin vorbereitet. Dafür muss Git Gateway beim Hosting eingerichtet werden.'],
+  ['Lassen sich Blogbeiträge später selbst veröffentlichen?', 'Ja. Über /keystatic (oder /admin) können Beiträge erstellt, bearbeitet und gelöscht werden — nach einmaliger GitHub-Anmeldung.'],
 ];
 ---
 
